@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Functions ES6</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	
+	<script>
+		//Data
+		const names = ['wes', 'lux', 'xinef']
+
+		//Normal option
+		const fullNames = names.map(function(name){
+			return `${name} bos`;
+		});
+		console.log(fullNames)
+
+		//Arrow function with parentesis
+		const fullNames2 = names.map( (name)=>{
+			return `${name} bos bos`;
+		});
+		console.log(fullNames2);
+
+		//Arrow function with only one parameter
+		const fullNames3 = names.map( name=>{
+			return `${name} bos bos bos`;
+		});
+		console.log(fullNames3);
+
+		//Arrow function without {}
+		const fullNames4 = names.map(name=>`${name} bos bos bos bos`);
+		console.log(fullNames4);
+
+		//Arrow function without parameterrs
+		const fullNames5 = names.map(()=>`Xinef Thar was here`);
+		console.log(fullNames5);
+
+		//Arrow functions are alwyas annonymous functions but you can save them: 
+		
+		let sayMyName = (name)=> console.log(`${name} was here`);
+		sayMyName("Esen"); //outputs "Esen was here"
+
+
+	</script>
+
+
+
+	<script>
+		
+		//Aha
+		const race = "100m Dash";
+		const winners = ['Hunger Hong', 'Lorena Cook', 'Wes Bos'];
+		//We need to use parentesis to return an implicit return of object literal.
+		const win = winners.map((winner, i)=>({name:winner, race, place:i + 1}) );
+		console.table(win);
+
+		
+		const ages = [23,62,45,234,2,62,234,62,34];
+		//funcky use of arrow function for inline filtering
+		const old = ages.filter(age=>age>=60);
+		console.log(old);
+
+
+
+
+	</script>
+
+
+	<script>
+		//Arrow Functions this-not-changing
+		const box = document.querySelector('.box');
+		// box.addEventListener('click', function(){
+		// 	console.log(this); //this is : box
+		// })
+
+		// box.addEventListener('click', ()=>{
+		// 	console.log(this); //this is : Window
+		// })
+
+		box.addEventListener('click', function(){
+			this.classList.toggle('opening'); //this = box
+			setTimeout(function(){
+				this.classList.toggle('open'); //this = window! (this function is not bound to anything!)
+			})
+		})
+
+		box.addEventListener('click', function(){
+			let first = 'opening';
+			let second = 'open';
+
+			if(this.classList.contains(first)){
+				[first, second] = [second, first]; // WOW
+			}
+
+			this.classList.toggle(first); //this = box
+			setTimeout(()=>{this.classList.toggle(second);}) //this = box;
+		})
+
+	</script>
+
+	<script>
+		//MISSING ALL THE "DONT USE CASES for ARROW FUNCTIONS" (10 of 66)!!
+
+	</script>
+
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Let and Const</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<p>We have 3 ways to declare variables. Let and const are new ones in ES6.</p>
+	
+	<script>
+		var something = ""; 
+		let someotherthing = "";
+		const someotherthingy = "";
+	</script>
+
+	<p>Var will update if you change it. And it also re-define the variable if you call it with "var" again. Var variables are function-scope (they can be globally scoped if). </p>
+
+	<script>
+		var a = "ok";
+		var b = "hello"
+		a = "not ok"; //will change the original variable
+
+		function(){
+			var b = "hello world"; //creates a new "b" inside the function scope
+			a = "ok" //Will change the outer "a" variable to "ok".	
+
+		}
+		console.log(a); //logs "ok"
+		console.log(b); //logs "hello"
+		var a = "another a" //Overrides the other "a" variable and creates a new one
+		console.log(a) //logs "another something"
+
+		if(true){
+			var b = "not hello" //Creates a new "b" that overrides the "hello" "b" variable in the outer scope.
+		}
+		console.log(b); //logs "not hello" 
+		                //because IF statements are not functions 
+		                //and var variables are function-scoped
+
+	</script>
+
+
+	<p>"Let" & "Const" lets you define block-scoped variables. (if & for's!!).</p>
+
+	<script>
+		{
+			var a = "outer var";
+			let a = "inner let";	
+		}
+		
+		console.log(a); // "outer var"
+		console.log(b); // not defined
+
+
+	</script>
+	
+
+	<p>You cannot declare more than once a "let". This helps you to not commit the error of redeclaring a variable in the same scope. </p>
+
+	<p>The main difference between const an let is that the first one cannot be updated. Simple as that.</p>
+
+	<p>Important!: The objects called with Const cannot be fully changed, but the attributes of that object can be changed!</p>
+
+	<p>Replacing the IIFE: You dont need this anymore, because with let, you have a protected scope :D</p>
+
+	<p>For problems: No more!</p>
+
+	<script>
+		//With Var 
+		for (var i=0; i<10;i++){
+			console.log(i) // logs  : 0,1,2,3,4,5,6,7,8,9
+			setTimeout(function(){
+				console.log(i); // logs : 10,10,10,10,10,10,10,10...
+			}, 1000)
+		}
+		console.log(i) // Global i is set to 10 after forloop ends! 
+
+		//With let!
+		for (let i=0; i<10;i++){
+			console.log(i) // logs  : 0,1,2,3,4,5,6,7,8,9
+			setTimeout(function(){
+				console.log(i); // logs : 0,1,2,3,4,5,6,7,8,9...
+			}, 1000)
+		}
+		console.log(i) // undefined.
+	</script>
+	
+	<p>Temporal Dead Zone</p>
+
+	<script>
+		//Var 
+		console.log(pizza); //undefined
+		var pizza = "pizza!"; 
+
+		//Let & Const
+		console.log(pizza);
+		let pizza = "Pizza!"; //Error "Not yet defined"
+	</script>
+
+	<p>Is var Dead? What should I use?</p>
+
+	<ul>
+		<li>Use const by default</li>
+		<li>only use let if rebinding is needed</li>
+		<li>var shouldn't be used</li>
+	</ul>
+
+	<ul>
+		<li>Use var for top level variables that are shared accross many (specially larger) scopes</li>
+		<li>Use let for localized variables and small scopes</li>
+		<li>Use const only when you are pretty sure you are not going to change it.</li>
+	</ul>
+
+</body>
+</html>
